@@ -60,4 +60,8 @@ class QQMusicOperationTool: NSObject {
         let music = (currentMusicIndex == 0) ? musicModels[musicModels.count - 1] : musicModels[currentMusicIndex - 1]
         musicTool.isPlaying ? playMusic(musicModel: music) : changeMusic(musicModel: music)
     }
+    
+    func changeProgress(progress: Float) -> Void {
+        musicTool.changeProgress(progress: progress)
+    }
 }

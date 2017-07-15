@@ -27,11 +27,12 @@ class QQMusicTool: NSObject {
         return (player?.isPlaying)!
     }
     
+    //换歌
     func changeMusic(musicName: String) -> Void {
         createPlayer(musicName: musicName)
         player?.prepareToPlay()
     }
-    
+    //播放
     func playMusic(musicName: String) {
         changeMusic(musicName: musicName)
         player?.play()
@@ -51,11 +52,21 @@ class QQMusicTool: NSObject {
         }
         do {
             player = try AVAudioPlayer(contentsOf: url)
+            player?.delegate = self
         } catch {
             print(error)
             return
         }
     }
     
-    
+    func changeProgress(progress: Float) -> Void {
+        let newTime = TimeInterval(Float((player?.duration)!) * progress)
+        
+        player?.currentTime = newTime
+    }
+}
+extension QQMusicTool: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        NotificationCenter.default.post(name: MusicPlayFinishNotification, object: nil)
+    }
 }

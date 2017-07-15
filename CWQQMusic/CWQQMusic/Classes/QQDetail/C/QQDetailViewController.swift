@@ -32,9 +32,12 @@ class QQDetailViewController: UIViewController {
     @IBOutlet weak var playOrPauseButton: UIButton!
 
 
+
     var timer: Timer?
     
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 // MARK:- 生命周期与业务逻辑
@@ -43,19 +46,19 @@ extension QQDetailViewController {
         addLrcView()
         setUpLrcScrollView()
         setUpSlider()
+        
+        setUpNotification()
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setUpLrcView()
         setUpImageView()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUpOnceViews()
         addTimer()
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeTimer()
@@ -79,11 +82,20 @@ extension QQDetailViewController {
         QQMusicOperationTool.sharedInstance.nextMusic()
         setUpOnceViews()
     }
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        let value = sender.value
+        
+        QQMusicOperationTool.sharedInstance.changeProgress(progress: value)
+    }
 }
 
 
-// MARK:- 初始化界面
+// MARK:- 初始化
 extension QQDetailViewController {
+    fileprivate func setUpNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(musicPlayFinished), name: MusicPlayFinishNotification, object: nil)
+    }
+    
     fileprivate func addLrcView() {
         lrcScrollView.addSubview(lrcView)
     }
@@ -137,7 +149,6 @@ extension QQDetailViewController {
         let musicViewModel = QQMusicOperationTool.sharedInstance.getMusicViewModel()
         slider.value = musicViewModel.progress
         currentTimeLabel.text = QQTimeDealer.getFormatTime(timeInterval: musicViewModel.costTime)
-        playOrPauseButton.isSelected = musicViewModel.isPlaying
     }
     
     fileprivate func addTimer() {
@@ -150,6 +161,13 @@ extension QQDetailViewController {
     }
 }
 
+// MARK:- 通知处理
+extension QQDetailViewController {
+    func musicPlayFinished() {
+        playOrPauseButton.isSelected = false
+        removeAnimation()
+    }
+}
 
 // MARK:- 动画
 extension QQDetailViewController {
@@ -173,6 +191,10 @@ extension QQDetailViewController {
     
     func resumeAnimation() {
         imageView.layer.resumeAnimate()
+    }
+    
+    func removeAnimation() {
+        imageView.layer.removeAllAnimations()
     }
 }
 

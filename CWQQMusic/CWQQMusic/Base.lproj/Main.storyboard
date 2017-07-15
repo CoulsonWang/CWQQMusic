@@ -147,6 +147,9 @@
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XJ1-9Q-BVv">
                                         <rect key="frame" x="54" y="26" width="267" height="31"/>
                                         <color key="tintColor" red="0.2274509804" green="0.75686274509999996" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="sliderValueChanged:" destination="bTJ-wC-Hlq" eventType="valueChanged" id="FnX-XN-XGi"/>
+                                        </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8c-1u-9aj">
                                         <rect key="frame" x="8" y="33" width="40" height="17"/>
