@@ -13,6 +13,7 @@ class QQListTableViewController: UITableViewController {
     var models: [QQMusicModel] = [QQMusicModel]() {
         didSet {
             tableView.reloadData()
+            QQMusicOperationTool.sharedInstance.musicModels = models
         }
     }
     
@@ -52,7 +53,7 @@ extension QQListTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = models[indexPath.row]
-        QQMusicOperationTool.playMusic(musicModel: model)
+        QQMusicOperationTool.sharedInstance.playMusic(musicModel: model)
         performSegue(withIdentifier: "listToDetail", sender: model)
     }
 }

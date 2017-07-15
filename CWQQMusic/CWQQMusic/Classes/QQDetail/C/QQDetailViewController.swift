@@ -40,6 +40,7 @@ extension QQDetailViewController {
     override func viewDidLoad() {
         addLrcView()
         setUpLrcScrollView()
+        playOrPauseButton.isSelected = true
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -59,12 +60,20 @@ extension QQDetailViewController {
     }
     
     @IBAction func playOrPause(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected {
+            QQMusicOperationTool.sharedInstance.playCurrentMusic()
+        } else {
+            QQMusicOperationTool.sharedInstance.pauseCurrenMusic()
+        }
     }
     @IBAction func previous(_ sender: UIButton) {
         setUpOnceViews()
+        QQMusicOperationTool.sharedInstance.previousMusic()
     }
     @IBAction func next(_ sender: UIButton) {
         setUpOnceViews()
+        QQMusicOperationTool.sharedInstance.nextMusic()
     }
 }
 

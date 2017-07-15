@@ -24,6 +24,10 @@ class QQMusicTool: NSObject {
         player?.play()
     }
     
+    func pause() {
+        player?.pause()
+    }
+    
     private func createPlayer(musicName: String) {
         
         guard let url = Bundle.main.url(forResource: musicName, withExtension: nil) else {

@@ -88,13 +88,13 @@
                                 <rect key="frame" x="0.0" y="100" width="375" height="417"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jay.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="i4A-P5-HvH">
-                                        <rect key="frame" x="39" y="60" width="297" height="297"/>
+                                        <rect key="frame" x="79" y="100" width="217" height="217"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="i4A-P5-HvH" secondAttribute="height" multiplier="1:1" id="PFu-Cl-M4h"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dp-a9-cxv">
-                                        <rect key="frame" x="166" y="369" width="42" height="21"/>
+                                        <rect key="frame" x="166" y="337" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -107,11 +107,11 @@
                                 <constraints>
                                     <constraint firstItem="8Dp-a9-cxv" firstAttribute="centerX" secondItem="926-q2-fjp" secondAttribute="centerX" id="DdG-2x-eoV"/>
                                     <constraint firstItem="gDB-0K-H77" firstAttribute="leading" secondItem="926-q2-fjp" secondAttribute="leading" id="K4u-6Z-fyc"/>
-                                    <constraint firstItem="8Dp-a9-cxv" firstAttribute="top" secondItem="i4A-P5-HvH" secondAttribute="bottom" constant="12" id="QRW-tj-CFe"/>
+                                    <constraint firstItem="8Dp-a9-cxv" firstAttribute="top" secondItem="i4A-P5-HvH" secondAttribute="bottom" constant="20" id="QRW-tj-CFe"/>
                                     <constraint firstAttribute="bottom" secondItem="gDB-0K-H77" secondAttribute="bottom" id="T5F-gU-ZEK"/>
                                     <constraint firstItem="i4A-P5-HvH" firstAttribute="centerX" secondItem="926-q2-fjp" secondAttribute="centerX" id="Z5C-UX-vwc"/>
                                     <constraint firstAttribute="trailing" secondItem="gDB-0K-H77" secondAttribute="trailing" id="efV-6w-Vn7"/>
-                                    <constraint firstItem="i4A-P5-HvH" firstAttribute="top" secondItem="926-q2-fjp" secondAttribute="top" constant="60" id="gXX-1i-NFd"/>
+                                    <constraint firstItem="i4A-P5-HvH" firstAttribute="top" secondItem="926-q2-fjp" secondAttribute="top" constant="100" id="gXX-1i-NFd"/>
                                     <constraint firstItem="i4A-P5-HvH" firstAttribute="centerY" secondItem="926-q2-fjp" secondAttribute="centerY" id="nAL-In-1gS"/>
                                     <constraint firstItem="gDB-0K-H77" firstAttribute="top" secondItem="926-q2-fjp" secondAttribute="top" id="ucf-NV-cWB"/>
                                 </constraints>
@@ -122,6 +122,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CtZ-YK-6se">
                                         <rect key="frame" x="155" y="71" width="64" height="64"/>
                                         <state key="normal" image="player_btn_play_normal"/>
+                                        <state key="selected" image="player_btn_pause_normal"/>
                                         <state key="highlighted" image="player_btn_play_highlight"/>
                                         <connections>
                                             <action selector="playOrPause:" destination="bTJ-wC-Hlq" eventType="touchUpInside" id="A1p-Aj-Vhi"/>
@@ -251,6 +252,7 @@
         <image name="main_tab_more_h" width="45" height="45"/>
         <image name="player_btn_next_highlight" width="64" height="64"/>
         <image name="player_btn_next_normal" width="64" height="64"/>
+        <image name="player_btn_pause_normal" width="64" height="64"/>
         <image name="player_btn_play_highlight" width="64" height="64"/>
         <image name="player_btn_play_normal" width="64" height="64"/>
         <image name="player_btn_pre_highlight" width="64" height="64"/>
