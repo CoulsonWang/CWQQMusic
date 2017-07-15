@@ -45,6 +45,7 @@ extension QQListTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = QQMusicTableViewCell.cellWithTableView(tableView: tableView)
         cell.musicItem = models[indexPath.row]
+
         return cell
     }
 }

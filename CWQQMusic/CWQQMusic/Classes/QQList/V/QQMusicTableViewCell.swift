@@ -27,7 +27,9 @@ class QQMusicTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        iconImageView.layer.cornerRadius = iconImageView.bounds.width * 0.5
+        iconImageView.layer.masksToBounds = true
     }
     
     class func cellWithTableView(tableView: UITableView) ->QQMusicTableViewCell {
@@ -37,13 +39,18 @@ class QQMusicTableViewCell: UITableViewCell {
         if cell == nil {
             cell = Bundle.main.loadNibNamed("QQMusicTableViewCell", owner: nil, options: nil)?.first as? QQMusicTableViewCell
         }
+        setUpAnimation(cell: cell!)
+        
         return cell!
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    class func setUpAnimation(cell: QQMusicTableViewCell) {
+        cell.layer.removeAllAnimations()
+        let animation = CABasicAnimation(keyPath: "transform.translation.x")
+        animation.fromValue = cell.bounds.width
+        animation.toValue = 0
+        animation.duration = 0.2
+        animation.repeatCount = 1
+        cell.layer.add(animation, forKey: "translation")
     }
-    
 }
