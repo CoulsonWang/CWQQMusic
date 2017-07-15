@@ -19,7 +19,8 @@ class QQListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         QQMusicModelDataTool.getMusicModels { (models) in
             if let models = models {
                 self.models = models
@@ -47,6 +48,12 @@ extension QQListTableViewController {
         cell.musicItem = models[indexPath.row]
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = models[indexPath.row]
+        QQMusicOperationTool.playMusic(musicModel: model)
+        performSegue(withIdentifier: "listToDetail", sender: model)
     }
 }
 
