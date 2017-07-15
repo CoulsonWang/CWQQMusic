@@ -16,6 +16,7 @@ class QQDetailViewController: UIViewController {
     @IBOutlet weak var lrcScrollView: UIScrollView!
     
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var singerNameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -40,7 +41,7 @@ extension QQDetailViewController {
     override func viewDidLoad() {
         addLrcView()
         setUpLrcScrollView()
-        playOrPauseButton.isSelected = true
+        setUpSlider()
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -68,12 +69,12 @@ extension QQDetailViewController {
         }
     }
     @IBAction func previous(_ sender: UIButton) {
-        setUpOnceViews()
         QQMusicOperationTool.sharedInstance.previousMusic()
+        setUpOnceViews()
     }
     @IBAction func next(_ sender: UIButton) {
-        setUpOnceViews()
         QQMusicOperationTool.sharedInstance.nextMusic()
+        setUpOnceViews()
     }
 }
 
@@ -96,6 +97,10 @@ extension QQDetailViewController {
         lrcScrollView.delegate = self
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     fileprivate func setUpImageView() {
         imageView.layer.cornerRadius = imageView.bounds.width * 0.5
         imageView.layer.masksToBounds = true
@@ -107,11 +112,21 @@ extension QQDetailViewController {
     }
     
     fileprivate func setUpOnceViews() {
+        let musicViewModel = QQMusicOperationTool.sharedInstance.getMusicViewModel()
+        guard let musicModel = musicViewModel.musicModel else { return }
         
+        backgroundImageView.image = UIImage(named: musicModel.icon!)
+        imageView.image = UIImage(named: musicModel.icon!)
+        songNameLabel.text = musicModel.name
+        singerNameLabel.text = musicModel.singer
+        totalTimeLabel.text = QQTimeDealer.getFormatTime(timeInterval: musicViewModel.totlaTime)
+        playOrPauseButton.isSelected = musicViewModel.isPlaying
     }
     
     @objc fileprivate func setUpTimesView() {
-        
+        let musicViewModel = QQMusicOperationTool.sharedInstance.getMusicViewModel()
+        slider.value = musicViewModel.progress
+        currentTimeLabel.text = QQTimeDealer.getFormatTime(timeInterval: musicViewModel.costTime)
     }
     
     fileprivate func addTimer() {

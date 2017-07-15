@@ -145,14 +145,13 @@
                                         </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XJ1-9Q-BVv">
-                                        <rect key="frame" x="53" y="26" width="268" height="31"/>
+                                        <rect key="frame" x="54" y="26" width="267" height="31"/>
                                         <color key="tintColor" red="0.2274509804" green="0.75686274509999996" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="thumbTintColor" red="0.22745098039215686" green="0.75686274509803919" blue="0.49411764705882355" alpha="1" colorSpace="calibratedRGB"/>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8c-1u-9aj">
-                                        <rect key="frame" x="8" y="33" width="39" height="17"/>
+                                        <rect key="frame" x="8" y="33" width="40" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="39" id="So1-dr-xec"/>
+                                            <constraint firstAttribute="width" constant="40" id="So1-dr-xec"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -178,7 +177,6 @@
                                     <constraint firstItem="CtZ-YK-6se" firstAttribute="top" secondItem="XJ1-9Q-BVv" secondAttribute="bottom" constant="15" id="SCT-kr-gsB"/>
                                     <constraint firstAttribute="height" constant="150" id="TTd-E7-9Vs"/>
                                     <constraint firstItem="CtZ-YK-6se" firstAttribute="leading" secondItem="ldh-G8-qBy" secondAttribute="trailing" constant="50" id="V1E-cM-Wll"/>
-                                    <constraint firstItem="XJ1-9Q-BVv" firstAttribute="centerX" secondItem="9mn-Fi-hFo" secondAttribute="centerX" id="mmm-qC-CYc"/>
                                     <constraint firstItem="u58-QV-wcs" firstAttribute="centerY" secondItem="XJ1-9Q-BVv" secondAttribute="centerY" id="r7c-Fe-F9B"/>
                                     <constraint firstItem="ldh-G8-qBy" firstAttribute="centerY" secondItem="CtZ-YK-6se" secondAttribute="centerY" id="vcQ-80-igU"/>
                                     <constraint firstItem="u58-QV-wcs" firstAttribute="leading" secondItem="XJ1-9Q-BVv" secondAttribute="trailing" constant="8" id="wrR-Xm-18y"/>
@@ -212,6 +210,7 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="backgroundImageView" destination="YUK-90-erR" id="g74-uX-na0"/>
                         <outlet property="currentTimeLabel" destination="C8c-1u-9aj" id="dRW-Kf-TDU"/>
                         <outlet property="imageView" destination="i4A-P5-HvH" id="Bt3-qB-E9G"/>
                         <outlet property="lrcLabel" destination="8Dp-a9-cxv" id="JxH-zW-V0N"/>

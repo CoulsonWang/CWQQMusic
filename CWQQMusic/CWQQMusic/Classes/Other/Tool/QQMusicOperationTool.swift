@@ -9,21 +9,35 @@
 import UIKit
 
 class QQMusicOperationTool: NSObject {
+    
     static let sharedInstance = QQMusicOperationTool()
+    let musicTool = QQMusicTool.sharedInstance
+    
     
     var musicModels: [QQMusicModel] = [QQMusicModel]()
-    var currentMusicIndex: Int = -1
+    private var currentMusicIndex: Int = -1
+    private var currentMusicViewModel: QQMusicViewModel? = QQMusicViewModel()
+    
+    func getMusicViewModel() -> QQMusicViewModel {
+        
+        currentMusicViewModel?.musicModel = musicModels[currentMusicIndex]
+        currentMusicViewModel?.costTime = musicTool.currentTime
+        currentMusicViewModel?.totlaTime = musicTool.totalTime
+        currentMusicViewModel?.isPlaying = musicTool.isPlaying
+        
+        return currentMusicViewModel!
+    }
     
     
     func playMusic(musicModel: QQMusicModel) {
-        QQMusicTool.sharedInstance.playMusic(musicName: musicModel.filename!)
+        musicTool.playMusic(musicName: musicModel.filename!)
         if let index = musicModels.index(of: musicModel) {
             currentMusicIndex = index
         }
     }
     
     func pauseCurrenMusic() {
-        QQMusicTool.sharedInstance.pause()
+        musicTool.pause()
     }
     
     func playCurrentMusic() {

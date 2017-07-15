@@ -15,6 +15,19 @@ class QQMusicTool: NSObject {
     
     static let sharedInstance: QQMusicTool = QQMusicTool()
     
+    var currentTime: TimeInterval {
+        return (player?.currentTime)!
+    }
+    
+    var totalTime: TimeInterval {
+        return (player?.duration)!
+    }
+    
+    var isPlaying: Bool {
+        return (player?.isPlaying)!
+    }
+    
+    
     func playMusic(musicName: String) {
         
         createPlayer(musicName: musicName)
@@ -43,4 +56,6 @@ class QQMusicTool: NSObject {
             return
         }
     }
+    
+    
 }
