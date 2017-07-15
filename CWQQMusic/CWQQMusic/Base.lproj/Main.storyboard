@@ -123,16 +123,25 @@
                                         <rect key="frame" x="155" y="71" width="64" height="64"/>
                                         <state key="normal" image="player_btn_play_normal"/>
                                         <state key="highlighted" image="player_btn_play_highlight"/>
+                                        <connections>
+                                            <action selector="playOrPause:" destination="bTJ-wC-Hlq" eventType="touchUpInside" id="A1p-Aj-Vhi"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LD0-0l-FQo">
                                         <rect key="frame" x="269" y="71" width="64" height="64"/>
                                         <state key="normal" image="player_btn_next_normal"/>
                                         <state key="highlighted" image="player_btn_next_highlight"/>
+                                        <connections>
+                                            <action selector="next:" destination="bTJ-wC-Hlq" eventType="touchUpInside" id="USP-4x-cEc"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldh-G8-qBy">
                                         <rect key="frame" x="41" y="71" width="64" height="64"/>
                                         <state key="normal" image="player_btn_pre_normal"/>
                                         <state key="highlighted" image="player_btn_pre_highlight"/>
+                                        <connections>
+                                            <action selector="previous:" destination="bTJ-wC-Hlq" eventType="touchUpInside" id="BHC-8g-KaK"/>
+                                        </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XJ1-9Q-BVv">
                                         <rect key="frame" x="53" y="26" width="268" height="31"/>
@@ -202,10 +211,15 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="currentTimeLabel" destination="C8c-1u-9aj" id="dRW-Kf-TDU"/>
                         <outlet property="imageView" destination="i4A-P5-HvH" id="Bt3-qB-E9G"/>
                         <outlet property="lrcLabel" destination="8Dp-a9-cxv" id="JxH-zW-V0N"/>
                         <outlet property="lrcScrollView" destination="gDB-0K-H77" id="OPq-vU-JDe"/>
+                        <outlet property="playOrPauseButton" destination="CtZ-YK-6se" id="xb0-g0-ONP"/>
+                        <outlet property="singerNameLabel" destination="x0e-nX-Uoh" id="Qy8-C9-OYV"/>
                         <outlet property="slider" destination="XJ1-9Q-BVv" id="bHn-Wr-8of"/>
+                        <outlet property="songNameLabel" destination="4T0-TM-Zso" id="Pdb-oP-ftj"/>
+                        <outlet property="totalTimeLabel" destination="u58-QV-wcs" id="bD8-4U-GeX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cD-dK-6bf" userLabel="First Responder" sceneMemberID="firstResponder"/>
