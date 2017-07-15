@@ -30,10 +30,16 @@ class QQMusicOperationTool: NSObject {
     
     
     func playMusic(musicModel: QQMusicModel) {
-        musicTool.playMusic(musicName: musicModel.filename!)
         if let index = musicModels.index(of: musicModel) {
             currentMusicIndex = index
         }
+        musicTool.playMusic(musicName: musicModel.filename!)
+    }
+    func changeMusic(musicModel: QQMusicModel) {
+        if let index = musicModels.index(of: musicModel) {
+            currentMusicIndex = index
+        }
+        musicTool.changeMusic(musicName: musicModel.filename!)
     }
     
     func pauseCurrenMusic() {
@@ -47,11 +53,11 @@ class QQMusicOperationTool: NSObject {
     
     func nextMusic() {
         let music = (currentMusicIndex == musicModels.count - 1) ? musicModels[0] : musicModels[currentMusicIndex + 1]
-        playMusic(musicModel: music)
+        musicTool.isPlaying ? playMusic(musicModel: music) : changeMusic(musicModel: music)
     }
     
     func previousMusic() {
         let music = (currentMusicIndex == 0) ? musicModels[musicModels.count - 1] : musicModels[currentMusicIndex - 1]
-        playMusic(musicModel: music)
+        musicTool.isPlaying ? playMusic(musicModel: music) : changeMusic(musicModel: music)
     }
 }

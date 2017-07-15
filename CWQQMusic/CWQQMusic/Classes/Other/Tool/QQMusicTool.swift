@@ -27,13 +27,13 @@ class QQMusicTool: NSObject {
         return (player?.isPlaying)!
     }
     
+    func changeMusic(musicName: String) -> Void {
+        createPlayer(musicName: musicName)
+        player?.prepareToPlay()
+    }
     
     func playMusic(musicName: String) {
-        
-        createPlayer(musicName: musicName)
-        
-        player?.prepareToPlay()
-        
+        changeMusic(musicName: musicName)
         player?.play()
     }
     

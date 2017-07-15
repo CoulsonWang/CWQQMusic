@@ -37,6 +37,7 @@ class QQDetailViewController: UIViewController {
     
 }
 
+// MARK:- 生命周期与业务逻辑
 extension QQDetailViewController {
     override func viewDidLoad() {
         addLrcView()
@@ -64,8 +65,10 @@ extension QQDetailViewController {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
             QQMusicOperationTool.sharedInstance.playCurrentMusic()
+            resumeAnimation()
         } else {
             QQMusicOperationTool.sharedInstance.pauseCurrenMusic()
+            pauseAnimation()
         }
     }
     @IBAction func previous(_ sender: UIButton) {
@@ -121,12 +124,20 @@ extension QQDetailViewController {
         singerNameLabel.text = musicModel.singer
         totalTimeLabel.text = QQTimeDealer.getFormatTime(timeInterval: musicViewModel.totlaTime)
         playOrPauseButton.isSelected = musicViewModel.isPlaying
+        
+        addRotationAnimation()
+        if musicViewModel.isPlaying {
+            resumeAnimation()
+        } else {
+            pauseAnimation()
+        }
     }
     
     @objc fileprivate func setUpTimesView() {
         let musicViewModel = QQMusicOperationTool.sharedInstance.getMusicViewModel()
         slider.value = musicViewModel.progress
         currentTimeLabel.text = QQTimeDealer.getFormatTime(timeInterval: musicViewModel.costTime)
+        playOrPauseButton.isSelected = musicViewModel.isPlaying
     }
     
     fileprivate func addTimer() {
@@ -142,10 +153,30 @@ extension QQDetailViewController {
 
 // MARK:- 动画
 extension QQDetailViewController {
+    func addRotationAnimation() {
+        
+        imageView.layer.removeAllAnimations()
+        
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.fromValue = 0
+        animation.toValue = Double.pi * 2
+        animation.duration = 30
+        animation.repeatCount = MAXFLOAT
+        animation.isRemovedOnCompletion = false
+        
+        imageView.layer.add(animation, forKey: "rotation")
+    }
     
+    func pauseAnimation() {
+        imageView.layer.pauseAnimate()
+    }
+    
+    func resumeAnimation() {
+        imageView.layer.resumeAnimate()
+    }
 }
 
-
+// MARK:- scrollView代理
 extension QQDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x
