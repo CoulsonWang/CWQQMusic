@@ -164,10 +164,13 @@ extension QQDetailViewController {
     @objc private func updateLrcLabel() {
         let time = QQMusicOperationTool.sharedInstance.getMusicViewModel().costTime
         let lrcModels = lrcTVC.lrcModels
-        guard let lrcModel = QQMusicModelDataTool.getCurrentLrcModel(currentTime: time, lrcModels: lrcModels) else {
-            return
+        let (lrcModel,row) = QQMusicModelDataTool.getCurrentLrcModel(currentTime: time, lrcModels: lrcModels)
+        if let lrcModel = lrcModel {
+            lrcLabel.text = lrcModel.lrcSentence
         }
-        lrcLabel.text = lrcModel.lrcSentence
+        if let row = row {
+            lrcTVC.scrollRow = row
+        }
     }
     
     fileprivate func addTimer() {

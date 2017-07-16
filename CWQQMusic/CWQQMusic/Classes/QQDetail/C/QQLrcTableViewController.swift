@@ -16,7 +16,16 @@ class QQLrcTableViewController: UITableViewController {
         }
     }
     
-
+    var scrollRow = 0 {
+        didSet {
+            if scrollRow == oldValue {
+                return
+            }
+            let indePath = IndexPath(row: scrollRow, section: 0)
+            tableView.scrollToRow(at: indePath, at: .middle, animated: true)
+        }
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
