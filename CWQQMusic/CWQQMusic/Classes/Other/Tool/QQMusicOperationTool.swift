@@ -11,6 +11,9 @@ import MediaPlayer
 
 class QQMusicOperationTool: NSObject {
     
+    var lastModel: QQLrcModel? = QQLrcModel()
+    
+    
     static let sharedInstance = QQMusicOperationTool()
     let musicTool = QQMusicTool.sharedInstance
     
@@ -70,23 +73,29 @@ class QQMusicOperationTool: NSObject {
     //设置锁屏界面
     func setUpLockMessage() {
         let musicViewModel = getMusicViewModel()
-        let center = MPNowPlayingInfoCenter.default()
         
         let musciName = musicViewModel.musicModel?.name ?? ""
         let singerName = musicViewModel.musicModel?.singer ?? ""
         let costTime = musicViewModel.costTime
         let totalTime = musicViewModel.totlaTime
         
-        let imageName = musicViewModel.musicModel?.icon ?? ""
-        let originImage = UIImage(named: imageName) ?? UIImage()
+
         let lrcModels = QQMusicModelDataTool.getLrcModels(lrcName: musicViewModel.musicModel?.lrcname)
         let lrcModel = QQMusicModelDataTool.getCurrentLrcModel(currentTime: costTime, lrcModels: lrcModels).lrcModel
+        if lastModel == lrcModel {
+            return
+        } else {
+            lastModel = lrcModel
+        }
+        let imageName = musicViewModel.musicModel?.icon ?? ""
+        let originImage = UIImage(named: imageName) ?? UIImage()
         let image = QQImageTool.createImageWithLrc(originImage: originImage, lrc: lrcModel)
         
         let artWork = MPMediaItemArtwork(boundsSize: CGSize(width: image.size.width, height: image.size.height)) { (size) -> UIImage in
             return image
         }
-    
+        
+        let center = MPNowPlayingInfoCenter.default()
         center.nowPlayingInfo = [
             MPMediaItemPropertyAlbumTitle : musciName,
             MPMediaItemPropertyArtist : singerName,

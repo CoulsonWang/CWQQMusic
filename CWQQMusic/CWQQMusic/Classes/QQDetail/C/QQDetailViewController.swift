@@ -176,7 +176,9 @@ extension QQDetailViewController {
             lrcTVC.scrollRow = row
         }
         
-        QQMusicOperationTool.sharedInstance.setUpLockMessage()
+        if UIApplication.shared.applicationState == .background {
+            QQMusicOperationTool.sharedInstance.setUpLockMessage()
+        }
     }
     
     fileprivate func addTimer() {
