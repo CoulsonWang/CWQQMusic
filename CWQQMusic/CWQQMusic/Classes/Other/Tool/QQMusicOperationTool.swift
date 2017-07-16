@@ -81,15 +81,23 @@ class QQMusicOperationTool: NSObject {
         
 
         let lrcModels = QQMusicModelDataTool.getLrcModels(lrcName: musicViewModel.musicModel?.lrcname)
-        let lrcModel = QQMusicModelDataTool.getCurrentLrcModel(currentTime: costTime, lrcModels: lrcModels).lrcModel
-        if lastModel == lrcModel {
+        
+        
+        let currentLrcModel = QQMusicModelDataTool.getCurrentLrcModel(currentTime: costTime, lrcModels: lrcModels).lrcModel
+        if lastModel == currentLrcModel {
             return
         } else {
-            lastModel = lrcModel
+            lastModel = currentLrcModel
         }
+        
+        let currentIndex = lrcModels.index(of: currentLrcModel!)!
+        let previousLrcModel = (currentIndex == 0) ? nil : lrcModels[currentIndex-1]
+        let nextLrcModel = (currentIndex == lrcModels.count-1) ? nil : lrcModels[currentIndex+1]
+        
+
         let imageName = musicViewModel.musicModel?.icon ?? ""
         let originImage = UIImage(named: imageName) ?? UIImage()
-        let image = QQImageTool.createImageWithLrc(originImage: originImage, lrc: lrcModel)
+        let image = QQImageTool.createImageWithLrcs(originImage: originImage, lrcs: [previousLrcModel,currentLrcModel,nextLrcModel])
         
         let artWork = MPMediaItemArtwork(boundsSize: CGSize(width: image.size.width, height: image.size.height)) { (size) -> UIImage in
             return image

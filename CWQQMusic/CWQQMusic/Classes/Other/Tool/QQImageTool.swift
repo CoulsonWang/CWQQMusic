@@ -33,4 +33,36 @@ class QQImageTool: NSObject {
         
         return resultImage!
     }
+    
+    class func createImageWithLrcs(originImage: UIImage, lrcs: [QQLrcModel?]) -> UIImage {
+        if lrcs.count != 3 {
+            return originImage
+        }
+        let preLrc = lrcs[0]?.lrcSentence ?? ""
+        let currentLrc = lrcs[1]?.lrcSentence ?? ""
+        let nextLrc = lrcs[2]?.lrcSentence ?? ""
+        
+        UIGraphicsBeginImageContext(originImage.size)
+        
+        originImage.draw(in: CGRect(x: 0, y: 0, width: originImage.size.width, height: originImage.size.height))
+        let preRect = CGRect(x: 0, y: 0, width: originImage.size.width, height: 14)
+        let curRect = CGRect(x: 0, y: 20, width: originImage.size.width, height: 14)
+        let nextRect = CGRect(x: 0, y: 40, width: originImage.size.width, height: 14)
+        let style = NSMutableParagraphStyle()
+        style.alignment = NSTextAlignment.center
+        let textAttr = [
+            NSFontAttributeName : UIFont.systemFont(ofSize: 14),
+            NSForegroundColorAttributeName : UIColor.white,
+            NSParagraphStyleAttributeName : style
+        ]
+        (preLrc as NSString).draw(in: preRect, withAttributes: textAttr)
+        (currentLrc as NSString).draw(in: curRect, withAttributes: textAttr)
+        (nextLrc as NSString).draw(in: nextRect, withAttributes: textAttr)
+        
+        let resultImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return resultImage!
+    }
 }
