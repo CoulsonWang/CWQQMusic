@@ -96,7 +96,7 @@
                                             <constraint firstAttribute="width" secondItem="i4A-P5-HvH" secondAttribute="height" multiplier="1:1" id="PFu-Cl-M4h"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dp-a9-cxv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dp-a9-cxv" customClass="QQLrcLabel" customModule="CWQQMusic" customModuleProvider="target">
                                         <rect key="frame" x="185.66666666666666" y="426" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -149,7 +149,6 @@
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XJ1-9Q-BVv">
                                         <rect key="frame" x="54" y="26" width="306" height="31"/>
-                                        <color key="tintColor" red="0.2274509804" green="0.75686274509999996" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="sliderValueChanged:" destination="bTJ-wC-Hlq" eventType="valueChanged" id="FnX-XN-XGi"/>
                                         </connections>

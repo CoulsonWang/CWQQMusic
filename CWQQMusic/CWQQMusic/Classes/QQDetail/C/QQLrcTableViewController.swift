@@ -21,8 +21,22 @@ class QQLrcTableViewController: UITableViewController {
             if scrollRow == oldValue {
                 return
             }
+            let indexPaths = tableView.indexPathsForVisibleRows
+            tableView.reloadRows(at: indexPaths!, with: .automatic)
+            
             let indePath = IndexPath(row: scrollRow, section: 0)
             tableView.scrollToRow(at: indePath, at: .middle, animated: true)
+        }
+    }
+    
+    var progress: CGFloat = 0.0 {
+        didSet {
+            let indePath = IndexPath(row: scrollRow, section: 0)
+            
+            let cell = tableView.cellForRow(at: indePath) as? QQLrcTableViewCell
+            
+            cell?.progress = progress
+            
         }
     }
     
@@ -46,19 +60,17 @@ class QQLrcTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellID = "lrcCell"
+        let cell = QQLrcTableViewCell.cellWithTableView(tableView: tableView)
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellID)
-        if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: cellID)
-            cell?.backgroundColor = UIColor.clear
-            cell?.textLabel?.textAlignment = .center
-            cell?.textLabel?.textColor = UIColor.white
+        cell.lrcContent = lrcModels[indexPath.row].lrcSentence
+        
+        if indexPath.row == scrollRow {
+            cell.progress = progress
+        } else {
+            cell.progress = 0
         }
         
-        cell?.textLabel?.text = lrcModels[indexPath.row].lrcSentence
-
-        return cell!
+        return cell
     }
     
 

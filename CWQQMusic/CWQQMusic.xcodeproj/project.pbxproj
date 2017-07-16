@@ -11,6 +11,9 @@
 		B949A6331F1A68B400CE28C3 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949A6321F1A68B400CE28C3 /* Common.swift */; };
 		B949A6351F1B332C00CE28C3 /* QQLrcModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949A6341F1B332C00CE28C3 /* QQLrcModel.swift */; };
 		B949A6371F1B3A5700CE28C3 /* QQLrcTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949A6361F1B3A5700CE28C3 /* QQLrcTableViewController.swift */; };
+		B949A6391F1B4ABF00CE28C3 /* QQLrcLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949A6381F1B4ABF00CE28C3 /* QQLrcLabel.swift */; };
+		B949A63C1F1B4D3D00CE28C3 /* QQLrcTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949A63A1F1B4D3D00CE28C3 /* QQLrcTableViewCell.swift */; };
+		B949A63D1F1B4D3D00CE28C3 /* QQLrcTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B949A63B1F1B4D3D00CE28C3 /* QQLrcTableViewCell.xib */; };
 		B9C06E621F1A0C21003BA6C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C06E601F1A0C21003BA6C8 /* Main.storyboard */; };
 		B9C06E641F1A0C21003BA6C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C06E631F1A0C21003BA6C8 /* Assets.xcassets */; };
 		B9C06E671F1A0C21003BA6C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C06E651F1A0C21003BA6C8 /* LaunchScreen.storyboard */; };
@@ -73,6 +76,9 @@
 		B949A6321F1A68B400CE28C3 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		B949A6341F1B332C00CE28C3 /* QQLrcModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQLrcModel.swift; sourceTree = "<group>"; };
 		B949A6361F1B3A5700CE28C3 /* QQLrcTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQLrcTableViewController.swift; sourceTree = "<group>"; };
+		B949A6381F1B4ABF00CE28C3 /* QQLrcLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQLrcLabel.swift; sourceTree = "<group>"; };
+		B949A63A1F1B4D3D00CE28C3 /* QQLrcTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQLrcTableViewCell.swift; sourceTree = "<group>"; };
+		B949A63B1F1B4D3D00CE28C3 /* QQLrcTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QQLrcTableViewCell.xib; sourceTree = "<group>"; };
 		B9C06E591F1A0C21003BA6C8 /* CWQQMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CWQQMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C06E611F1A0C21003BA6C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B9C06E631F1A0C21003BA6C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -342,6 +348,9 @@
 		B9C06ED21F1A0F24003BA6C8 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				B949A6381F1B4ABF00CE28C3 /* QQLrcLabel.swift */,
+				B949A63A1F1B4D3D00CE28C3 /* QQLrcTableViewCell.swift */,
+				B949A63B1F1B4D3D00CE28C3 /* QQLrcTableViewCell.xib */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -483,6 +492,7 @@
 				B9C06E621F1A0C21003BA6C8 /* Main.storyboard in Resources */,
 				B9C06EB51F1A0E37003BA6C8 /* nanquan@2x.jpg in Resources */,
 				B9C06ECE1F1A0E37003BA6C8 /* 339744.mp3 in Resources */,
+				B949A63D1F1B4D3D00CE28C3 /* QQLrcTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,10 +507,12 @@
 				B949A6371F1B3A5700CE28C3 /* QQLrcTableViewController.swift in Sources */,
 				B9C06EDE1F1A10E5003BA6C8 /* QQMusicModelDataTool.swift in Sources */,
 				B9C06EE61F1A2110003BA6C8 /* QQMusicTool.swift in Sources */,
+				B949A6391F1B4ABF00CE28C3 /* QQLrcLabel.swift in Sources */,
 				B9C06EDB1F1A1019003BA6C8 /* QQMusicModel.swift in Sources */,
 				B949A6331F1A68B400CE28C3 /* Common.swift in Sources */,
 				B9C06EE31F1A14D5003BA6C8 /* QQMusicTableViewCell.swift in Sources */,
 				B949A6311F1A61FB00CE28C3 /* CALayer-Extension.swift in Sources */,
+				B949A63C1F1B4D3D00CE28C3 /* QQLrcTableViewCell.swift in Sources */,
 				B9C06E781F1A0CB5003BA6C8 /* AppDelegate.swift in Sources */,
 				B949A6351F1B332C00CE28C3 /* QQLrcModel.swift in Sources */,
 				B9C06ED71F1A0F3C003BA6C8 /* QQListTableViewController.swift in Sources */,

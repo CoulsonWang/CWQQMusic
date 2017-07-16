@@ -24,7 +24,7 @@ class QQDetailViewController: UIViewController {
     lazy var lrcTVC: QQLrcTableViewController = QQLrcTableViewController()
     
     
-    @IBOutlet weak var lrcLabel: UILabel!
+    @IBOutlet weak var lrcLabel: QQLrcLabel!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var currentTimeLabel: UILabel!
     
@@ -133,6 +133,7 @@ extension QQDetailViewController {
     fileprivate func setUpSlider() {
         slider.setThumbImage(#imageLiteral(resourceName: "player_slider_playback_thumb"), for: .normal)
         slider.maximumTrackTintColor = UIColor.white
+        slider.tintColor = QQMusicTintColor
     }
     
     fileprivate func setUpOnceViews() {
@@ -167,7 +168,10 @@ extension QQDetailViewController {
         let (lrcModel,row) = QQMusicModelDataTool.getCurrentLrcModel(currentTime: time, lrcModels: lrcModels)
         if let lrcModel = lrcModel {
             lrcLabel.text = lrcModel.lrcSentence
+            lrcLabel.radio = CGFloat((time - lrcModel.beginTime) / (lrcModel.endTime - lrcModel.beginTime))
+            lrcTVC.progress = lrcLabel.radio
         }
+        
         if let row = row {
             lrcTVC.scrollRow = row
         }
