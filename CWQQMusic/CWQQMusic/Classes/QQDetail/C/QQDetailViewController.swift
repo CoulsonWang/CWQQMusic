@@ -204,8 +204,11 @@ extension QQDetailViewController {
 // MARK:- 通知处理
 extension QQDetailViewController {
     @objc fileprivate func musicPlayFinished() {
-        playOrPauseButton.isSelected = false
-        removeAnimation()
+//        playOrPauseButton.isSelected = false
+//        removeAnimation()
+        QQMusicOperationTool.sharedInstance.nextMusic()
+        QQMusicOperationTool.sharedInstance.playCurrentMusic()
+        setUpOnceViews()
     }
 }
 

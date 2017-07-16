@@ -45,9 +45,9 @@ class QQImageTool: NSObject {
         UIGraphicsBeginImageContext(originImage.size)
         
         originImage.draw(in: CGRect(x: 0, y: 0, width: originImage.size.width, height: originImage.size.height))
-        let preRect = CGRect(x: 0, y: 0, width: originImage.size.width, height: 14)
-        let curRect = CGRect(x: 0, y: 20, width: originImage.size.width, height: 14)
-        let nextRect = CGRect(x: 0, y: 40, width: originImage.size.width, height: 14)
+        let preRect = CGRect(x: 0, y: 0, width: originImage.size.width, height: 16)
+        let curRect = CGRect(x: 0, y: 20, width: originImage.size.width, height: 16)
+        let nextRect = CGRect(x: 0, y: 40, width: originImage.size.width, height: 16)
         let style = NSMutableParagraphStyle()
         style.alignment = NSTextAlignment.center
         let textAttr = [

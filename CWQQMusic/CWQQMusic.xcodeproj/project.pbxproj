@@ -15,6 +15,8 @@
 		B949A63C1F1B4D3D00CE28C3 /* QQLrcTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949A63A1F1B4D3D00CE28C3 /* QQLrcTableViewCell.swift */; };
 		B949A63D1F1B4D3D00CE28C3 /* QQLrcTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B949A63B1F1B4D3D00CE28C3 /* QQLrcTableViewCell.xib */; };
 		B949A63F1F1B62C500CE28C3 /* QQImageTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949A63E1F1B62C500CE28C3 /* QQImageTool.swift */; };
+		B949A6411F1B70A000CE28C3 /* QQDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B949A6401F1B70A000CE28C3 /* QQDetailViewController.storyboard */; };
+		B949A6431F1B70CD00CE28C3 /* QQListTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B949A6421F1B70CD00CE28C3 /* QQListTableViewController.storyboard */; };
 		B9C06E621F1A0C21003BA6C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C06E601F1A0C21003BA6C8 /* Main.storyboard */; };
 		B9C06E641F1A0C21003BA6C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C06E631F1A0C21003BA6C8 /* Assets.xcassets */; };
 		B9C06E671F1A0C21003BA6C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C06E651F1A0C21003BA6C8 /* LaunchScreen.storyboard */; };
@@ -81,6 +83,8 @@
 		B949A63A1F1B4D3D00CE28C3 /* QQLrcTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQLrcTableViewCell.swift; sourceTree = "<group>"; };
 		B949A63B1F1B4D3D00CE28C3 /* QQLrcTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QQLrcTableViewCell.xib; sourceTree = "<group>"; };
 		B949A63E1F1B62C500CE28C3 /* QQImageTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQImageTool.swift; sourceTree = "<group>"; };
+		B949A6401F1B70A000CE28C3 /* QQDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QQDetailViewController.storyboard; sourceTree = "<group>"; };
+		B949A6421F1B70CD00CE28C3 /* QQListTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QQListTableViewController.storyboard; sourceTree = "<group>"; };
 		B9C06E591F1A0C21003BA6C8 /* CWQQMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CWQQMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C06E611F1A0C21003BA6C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B9C06E631F1A0C21003BA6C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -332,6 +336,7 @@
 		B9C06ED01F1A0F24003BA6C8 /* C */ = {
 			isa = PBXGroup;
 			children = (
+				B949A6401F1B70A000CE28C3 /* QQDetailViewController.storyboard */,
 				B9C06ED81F1A0F57003BA6C8 /* QQDetailViewController.swift */,
 				B949A6361F1B3A5700CE28C3 /* QQLrcTableViewController.swift */,
 			);
@@ -361,6 +366,7 @@
 		B9C06ED31F1A0F29003BA6C8 /* C */ = {
 			isa = PBXGroup;
 			children = (
+				B949A6421F1B70CD00CE28C3 /* QQListTableViewController.storyboard */,
 				B9C06ED61F1A0F3C003BA6C8 /* QQListTableViewController.swift */,
 			);
 			path = C;
@@ -456,6 +462,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B949A6431F1B70CD00CE28C3 /* QQListTableViewController.storyboard in Resources */,
 				B9C06EC11F1A0E37003BA6C8 /* 255319.lrc in Resources */,
 				B9C06EBC1F1A0E37003BA6C8 /* 10736444.lrc in Resources */,
 				B9C06EC91F1A0E37003BA6C8 /* 12309111.mp3 in Resources */,
@@ -500,6 +507,7 @@
 				B9C06EC01F1A0E37003BA6C8 /* 235319.lrc in Resources */,
 				B9C06E621F1A0C21003BA6C8 /* Main.storyboard in Resources */,
 				B9C06EB51F1A0E37003BA6C8 /* nanquan@2x.jpg in Resources */,
+				B949A6411F1B70A000CE28C3 /* QQDetailViewController.storyboard in Resources */,
 				B9C06ECE1F1A0E37003BA6C8 /* 339744.mp3 in Resources */,
 				B949A63D1F1B4D3D00CE28C3 /* QQLrcTableViewCell.xib in Resources */,
 			);
