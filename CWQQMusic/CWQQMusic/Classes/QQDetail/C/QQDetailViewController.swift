@@ -21,7 +21,7 @@ class QQDetailViewController: UIViewController {
     @IBOutlet weak var singerNameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var totalTimeLabel: UILabel!
-    lazy var lrcView = UIView()
+    lazy var lrcTVC: QQLrcTableViewController = QQLrcTableViewController()
     
     
     @IBOutlet weak var lrcLabel: UILabel!
@@ -32,7 +32,9 @@ class QQDetailViewController: UIViewController {
     @IBOutlet weak var playOrPauseButton: UIButton!
 
 
-    weak var timer: Timer?
+    fileprivate var timer: Timer?
+    fileprivate var displayLink: CADisplayLink?
+    
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -57,13 +59,15 @@ extension QQDetailViewController {
         super.viewWillAppear(animated)
         setUpOnceViews()
         addTimer()
+        addLink()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeTimer()
+        removeLink()
     }
     
-    @IBAction func playOrPause(_ sender: UIButton) {
+    @IBAction private func playOrPause(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
             QQMusicOperationTool.sharedInstance.playCurrentMusic()
@@ -73,23 +77,24 @@ extension QQDetailViewController {
             pauseAnimation()
         }
     }
-    @IBAction func previous(_ sender: UIButton) {
+    @IBAction private func previous(_ sender: UIButton) {
         QQMusicOperationTool.sharedInstance.previousMusic()
         setUpOnceViews()
     }
-    @IBAction func next(_ sender: UIButton) {
+    @IBAction private func next(_ sender: UIButton) {
         QQMusicOperationTool.sharedInstance.nextMusic()
         setUpOnceViews()
     }
-    @IBAction func sliderValueChanged(_ sender: UISlider) {
+    @IBAction private func sliderValueChanged(_ sender: UISlider) {
         let value = sender.value
         
         QQMusicOperationTool.sharedInstance.changeProgress(progress: value)
     }
     
-    @IBAction func close(_ sender: UIButton) {
+    @IBAction private func close(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
+    
 }
 
 
@@ -100,12 +105,13 @@ extension QQDetailViewController {
     }
     
     fileprivate func addLrcView() {
-        lrcScrollView.addSubview(lrcView)
+        lrcTVC.tableView.backgroundColor = UIColor.clear
+        lrcScrollView.addSubview(lrcTVC.tableView)
     }
     fileprivate func setUpLrcView() {
         var frame = lrcScrollView.bounds
-        frame.origin.x += frame.width
-        lrcView.frame = frame
+        frame.origin.x = frame.width
+        lrcTVC.tableView.frame = frame
         
         lrcScrollView.contentSize = CGSize(width: 2 * frame.width, height: 0)
     }
@@ -139,8 +145,7 @@ extension QQDetailViewController {
         singerNameLabel.text = musicModel.singer
         totalTimeLabel.text = QQTimeDealer.getFormatTime(timeInterval: musicViewModel.totlaTime)
         playOrPauseButton.isSelected = musicViewModel.isPlaying
-        let lrcModels = QQMusicModelDataTool.getLrcModels(lrcName: musicModel.lrcname)
-        
+        lrcTVC.lrcModels = QQMusicModelDataTool.getLrcModels(lrcName: musicModel.lrcname)
         
         addRotationAnimation()
         if musicViewModel.isPlaying {
@@ -156,18 +161,38 @@ extension QQDetailViewController {
         currentTimeLabel.text = QQTimeDealer.getFormatTime(timeInterval: musicViewModel.costTime)
     }
     
+    @objc private func updateLrcLabel() {
+        let time = QQMusicOperationTool.sharedInstance.getMusicViewModel().costTime
+        let lrcModels = lrcTVC.lrcModels
+        guard let lrcModel = QQMusicModelDataTool.getCurrentLrcModel(currentTime: time, lrcModels: lrcModels) else {
+            return
+        }
+        lrcLabel.text = lrcModel.lrcSentence
+    }
+    
     fileprivate func addTimer() {
         timer = Timer(timeInterval: 1, target: self, selector: #selector(QQDetailViewController.setUpTimesView), userInfo: nil, repeats: true)
-        RunLoop.current.add(timer!, forMode: RunLoopMode.commonModes)
+        RunLoop.current.add(timer!, forMode: RunLoopMode.defaultRunLoopMode)
     }
     fileprivate func removeTimer() {
         timer?.invalidate()
+        timer = nil
+    }
+    
+    fileprivate func addLink() {
+        displayLink = CADisplayLink(target: self, selector: #selector(updateLrcLabel))
+        displayLink?.add(to: RunLoop.current, forMode: .commonModes)
+    }
+    
+    fileprivate func removeLink() {
+        displayLink?.invalidate()
+        displayLink = nil
     }
 }
 
 // MARK:- 通知处理
 extension QQDetailViewController {
-    func musicPlayFinished() {
+    @objc fileprivate func musicPlayFinished() {
         playOrPauseButton.isSelected = false
         removeAnimation()
     }
@@ -175,7 +200,7 @@ extension QQDetailViewController {
 
 // MARK:- 动画
 extension QQDetailViewController {
-    func addRotationAnimation() {
+    fileprivate func addRotationAnimation() {
         
         imageView.layer.removeAllAnimations()
         
@@ -189,22 +214,22 @@ extension QQDetailViewController {
         imageView.layer.add(animation, forKey: "rotation")
     }
     
-    func pauseAnimation() {
+    fileprivate func pauseAnimation() {
         imageView.layer.pauseAnimate()
     }
     
-    func resumeAnimation() {
+    fileprivate func resumeAnimation() {
         imageView.layer.resumeAnimate()
     }
     
-    func removeAnimation() {
+    fileprivate func removeAnimation() {
         imageView.layer.removeAllAnimations()
     }
 }
 
 // MARK:- scrollView代理
 extension QQDetailViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    internal func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x
         
         imageView.alpha = 1 - x/screenW

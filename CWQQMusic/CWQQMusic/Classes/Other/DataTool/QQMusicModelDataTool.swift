@@ -85,5 +85,13 @@ class QQMusicModelDataTool: NSObject {
         
         return lrcModels
     }
-
+    
+    class func getCurrentLrcModel(currentTime: TimeInterval, lrcModels: [QQLrcModel]) -> QQLrcModel? {
+        for lrcModel in lrcModels {
+            if currentTime >= lrcModel.beginTime && currentTime <= lrcModel.endTime {
+                return lrcModel
+            }
+        }
+        return nil
+    }
 }
