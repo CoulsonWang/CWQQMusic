@@ -78,7 +78,11 @@ class QQMusicOperationTool: NSObject {
         let totalTime = musicViewModel.totlaTime
         
         let imageName = musicViewModel.musicModel?.icon ?? ""
-        let image = UIImage(named: imageName) ?? UIImage()
+        let originImage = UIImage(named: imageName) ?? UIImage()
+        let lrcModels = QQMusicModelDataTool.getLrcModels(lrcName: musicViewModel.musicModel?.lrcname)
+        let lrcModel = QQMusicModelDataTool.getCurrentLrcModel(currentTime: costTime, lrcModels: lrcModels).lrcModel
+        let image = QQImageTool.createImageWithLrc(originImage: originImage, lrc: lrcModel)
+        
         let artWork = MPMediaItemArtwork(boundsSize: CGSize(width: image.size.width, height: image.size.height)) { (size) -> UIImage in
             return image
         }
@@ -86,11 +90,13 @@ class QQMusicOperationTool: NSObject {
         center.nowPlayingInfo = [
             MPMediaItemPropertyAlbumTitle : musciName,
             MPMediaItemPropertyArtist : singerName,
-            MPMediaItemPropertyAlbumTrackNumber : costTime,
+            MPNowPlayingInfoPropertyElapsedPlaybackTime : costTime,
             MPMediaItemPropertyPlaybackDuration : totalTime,
             MPMediaItemPropertyArtwork : artWork
         ]
         
         UIApplication.shared.beginReceivingRemoteControlEvents()
     }
+    
+    
 }
