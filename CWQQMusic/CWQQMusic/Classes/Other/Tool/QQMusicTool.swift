@@ -15,6 +15,18 @@ class QQMusicTool: NSObject {
     
     static let sharedInstance: QQMusicTool = QQMusicTool()
     
+    override init() {
+        super.init()
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayback)
+            try session.setActive(true)
+        } catch {
+            print(error)
+            return
+        }
+    }
+    
     var currentTime: TimeInterval {
         return (player?.currentTime)!
     }

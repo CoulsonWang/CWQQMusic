@@ -45,7 +45,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jay.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YUK-90-erR">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jay.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YUK-90-erR">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.96999999999999997" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="FUF-Nf-6UL">
@@ -191,15 +191,14 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="FUF-Nf-6UL" firstAttribute="top" secondItem="YUK-90-erR" secondAttribute="top" id="0Bl-JD-mJp"/>
                             <constraint firstItem="F2T-HS-xtQ" firstAttribute="top" secondItem="bKX-jo-rd9" secondAttribute="bottom" id="3GG-tp-Jbs"/>
                             <constraint firstAttribute="trailing" secondItem="F2T-HS-xtQ" secondAttribute="trailing" id="8kF-dF-CXp"/>
                             <constraint firstItem="F2T-HS-xtQ" firstAttribute="leading" secondItem="V68-fy-iii" secondAttribute="leading" id="CgH-5B-f7h"/>
                             <constraint firstItem="9mn-Fi-hFo" firstAttribute="leading" secondItem="V68-fy-iii" secondAttribute="leading" id="D8m-fQ-870"/>
-                            <constraint firstItem="fav-oN-8d4" firstAttribute="top" secondItem="FUF-Nf-6UL" secondAttribute="bottom" id="KT3-vP-Vg2"/>
-                            <constraint firstItem="FUF-Nf-6UL" firstAttribute="top" secondItem="V68-fy-iii" secondAttribute="top" id="Ork-NF-0Ov"/>
-                            <constraint firstItem="FUF-Nf-6UL" firstAttribute="leading" secondItem="V68-fy-iii" secondAttribute="leading" id="QdG-fM-82D"/>
+                            <constraint firstItem="FUF-Nf-6UL" firstAttribute="leading" secondItem="YUK-90-erR" secondAttribute="leading" id="JvV-QA-RaO"/>
                             <constraint firstItem="926-q2-fjp" firstAttribute="top" secondItem="F2T-HS-xtQ" secondAttribute="bottom" id="RBW-7g-Jb2"/>
                             <constraint firstItem="926-q2-fjp" firstAttribute="leading" secondItem="V68-fy-iii" secondAttribute="leading" id="Rb4-ww-jVD"/>
                             <constraint firstAttribute="trailing" secondItem="926-q2-fjp" secondAttribute="trailing" id="Rhf-NW-cn1"/>
@@ -207,10 +206,11 @@
                             <constraint firstItem="fav-oN-8d4" firstAttribute="top" secondItem="9mn-Fi-hFo" secondAttribute="bottom" id="VrG-xq-PRX"/>
                             <constraint firstItem="YUK-90-erR" firstAttribute="leading" secondItem="V68-fy-iii" secondAttribute="leading" id="YZu-Me-lls"/>
                             <constraint firstItem="fav-oN-8d4" firstAttribute="top" secondItem="YUK-90-erR" secondAttribute="bottom" id="YjL-tZ-hlW"/>
+                            <constraint firstItem="FUF-Nf-6UL" firstAttribute="trailing" secondItem="YUK-90-erR" secondAttribute="trailing" id="Z4q-3b-MCH"/>
                             <constraint firstAttribute="trailing" secondItem="9mn-Fi-hFo" secondAttribute="trailing" id="d46-2w-LzM"/>
                             <constraint firstItem="YUK-90-erR" firstAttribute="top" secondItem="V68-fy-iii" secondAttribute="top" id="piv-5Q-nXy"/>
                             <constraint firstItem="9mn-Fi-hFo" firstAttribute="top" secondItem="926-q2-fjp" secondAttribute="bottom" id="qLd-Tc-BZg"/>
-                            <constraint firstAttribute="trailing" secondItem="FUF-Nf-6UL" secondAttribute="trailing" id="wjz-2A-sOD"/>
+                            <constraint firstItem="FUF-Nf-6UL" firstAttribute="bottom" secondItem="YUK-90-erR" secondAttribute="bottom" id="s3f-Yc-0b4"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
