@@ -32,8 +32,7 @@ class QQDetailViewController: UIViewController {
     @IBOutlet weak var playOrPauseButton: UIButton!
 
 
-
-    var timer: Timer?
+    weak var timer: Timer?
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -87,6 +86,10 @@ extension QQDetailViewController {
         
         QQMusicOperationTool.sharedInstance.changeProgress(progress: value)
     }
+    
+    @IBAction func close(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 
@@ -136,6 +139,8 @@ extension QQDetailViewController {
         singerNameLabel.text = musicModel.singer
         totalTimeLabel.text = QQTimeDealer.getFormatTime(timeInterval: musicViewModel.totlaTime)
         playOrPauseButton.isSelected = musicViewModel.isPlaying
+        let lrcModels = QQMusicModelDataTool.getLrcModels(lrcName: musicModel.lrcname)
+        
         
         addRotationAnimation()
         if musicViewModel.isPlaying {
@@ -157,7 +162,6 @@ extension QQDetailViewController {
     }
     fileprivate func removeTimer() {
         timer?.invalidate()
-        timer = nil
     }
 }
 

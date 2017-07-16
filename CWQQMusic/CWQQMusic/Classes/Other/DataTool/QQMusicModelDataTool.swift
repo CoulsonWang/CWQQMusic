@@ -31,5 +31,59 @@ class QQMusicModelDataTool: NSObject {
         
         result(models)
     }
+    
+    class func getLrcModels(lrcName: String?) -> [QQLrcModel] {
+        if lrcName == nil {
+            return [QQLrcModel]()
+        }
+        
+        guard let path = Bundle.main.path(forResource: lrcName, ofType: nil) else {
+            return [QQLrcModel]()
+        }
+        
+        var lrcContent = ""
+        do {
+            lrcContent = try String(contentsOfFile: path)
+        } catch {
+            print(error)
+            return [QQLrcModel]()
+        }
+        //分割每一行
+        let lineArray = lrcContent.components(separatedBy: "\n")
+        var lrcModels = [QQLrcModel]()
+        for line in lineArray {
+            //过滤垃圾数据
+            if line.contains("[ti:]") || line.contains("[ar:]") || line.contains("[al:]") {
+                continue
+            }
+            //过滤括号
+            let resultStr = line.replacingOccurrences(of: "[", with: "")
+            let timeAndLrc = resultStr.components(separatedBy: "]")
+            if timeAndLrc.count != 2 {
+                continue
+            }
+            let timeStr = timeAndLrc[0]
+            let lrcStr = timeAndLrc[1]
+            
+            let lrcModel = QQLrcModel()
+            lrcModel.beginTime = QQTimeDealer.getTimeInterval(formatTime: timeStr)
+            lrcModel.lrcSentence = lrcStr
+            
+            lrcModels.append(lrcModel)
+        }
+        //处理结束时间
+        let count = lrcModels.count
+        for i in 0..<count {
+            if i == count - 1 {
+                continue
+            }
+            let lrcModel = lrcModels[i]
+            let nextModel = lrcModels[i+1]
+            lrcModel.endTime = nextModel.beginTime
+        }
+        
+        
+        return lrcModels
+    }
 
 }

@@ -71,6 +71,9 @@
                                         <rect key="frame" x="322" y="11" width="45" height="45"/>
                                         <state key="normal" image="main_tab_more"/>
                                         <state key="highlighted" image="main_tab_more_h"/>
+                                        <connections>
+                                            <action selector="close:" destination="bTJ-wC-Hlq" eventType="touchUpInside" id="RrG-o4-fxr"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
