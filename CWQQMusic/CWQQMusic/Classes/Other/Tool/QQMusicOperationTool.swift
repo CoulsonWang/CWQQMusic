@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class QQMusicOperationTool: NSObject {
     
@@ -63,5 +64,33 @@ class QQMusicOperationTool: NSObject {
     
     func changeProgress(progress: Float) -> Void {
         musicTool.changeProgress(progress: progress)
+    }
+    
+    
+    //设置锁屏界面
+    func setUpLockMessage() {
+        let musicViewModel = getMusicViewModel()
+        let center = MPNowPlayingInfoCenter.default()
+        
+        let musciName = musicViewModel.musicModel?.name ?? ""
+        let singerName = musicViewModel.musicModel?.singer ?? ""
+        let costTime = musicViewModel.costTime
+        let totalTime = musicViewModel.totlaTime
+        
+        let imageName = musicViewModel.musicModel?.icon ?? ""
+        let image = UIImage(named: imageName) ?? UIImage()
+        let artWork = MPMediaItemArtwork(boundsSize: CGSize(width: image.size.width, height: image.size.height)) { (size) -> UIImage in
+            return image
+        }
+    
+        center.nowPlayingInfo = [
+            MPMediaItemPropertyAlbumTitle : musciName,
+            MPMediaItemPropertyArtist : singerName,
+            MPMediaItemPropertyAlbumTrackNumber : costTime,
+            MPMediaItemPropertyPlaybackDuration : totalTime,
+            MPMediaItemPropertyArtwork : artWork
+        ]
+        
+        UIApplication.shared.beginReceivingRemoteControlEvents()
     }
 }

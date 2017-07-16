@@ -67,7 +67,7 @@ extension QQDetailViewController {
         removeLink()
     }
     
-    @IBAction private func playOrPause(_ sender: UIButton) {
+    @IBAction fileprivate func playOrPause(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
             QQMusicOperationTool.sharedInstance.playCurrentMusic()
@@ -77,11 +77,11 @@ extension QQDetailViewController {
             pauseAnimation()
         }
     }
-    @IBAction private func previous(_ sender: UIButton) {
+    @IBAction fileprivate func previous(_ sender: UIButton) {
         QQMusicOperationTool.sharedInstance.previousMusic()
         setUpOnceViews()
     }
-    @IBAction private func next(_ sender: UIButton) {
+    @IBAction fileprivate func next(_ sender: UIButton) {
         QQMusicOperationTool.sharedInstance.nextMusic()
         setUpOnceViews()
     }
@@ -175,6 +175,8 @@ extension QQDetailViewController {
         if let row = row {
             lrcTVC.scrollRow = row
         }
+        
+        QQMusicOperationTool.sharedInstance.setUpLockMessage()
     }
     
     fileprivate func addTimer() {
@@ -241,5 +243,33 @@ extension QQDetailViewController: UIScrollViewDelegate {
         
         imageView.alpha = 1 - x/screenW
         lrcLabel.alpha = 1 - x/screenW
+    }
+}
+
+
+// MARK:- 处理锁屏事件
+extension QQDetailViewController {
+    override func remoteControlReceived(with event: UIEvent?) {
+        let type = event?.subtype
+        switch type! {
+        case .remoteControlPlay:
+            QQMusicOperationTool.sharedInstance.playCurrentMusic()
+        case .remoteControlPause:
+            QQMusicOperationTool.sharedInstance.pauseCurrenMusic()
+        case .remoteControlNextTrack:
+            QQMusicOperationTool.sharedInstance.nextMusic()
+        case .remoteControlPreviousTrack:
+            QQMusicOperationTool.sharedInstance.previousMusic()
+        default:
+            return
+        }
+        setUpOnceViews()
+    }
+    
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            QQMusicOperationTool.sharedInstance.nextMusic()
+            setUpOnceViews()
+        }
     }
 }
